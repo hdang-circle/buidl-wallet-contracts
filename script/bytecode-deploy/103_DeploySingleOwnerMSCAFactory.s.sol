@@ -36,7 +36,7 @@ contract DeploySingleOwnerMSCAFactoryScript is Script {
         address entryPoint = ENTRY_POINT;
 
         uint256 key = vm.envUint("DEPLOYER_PRIVATE_KEY");
-        string[20] memory chains = Constants.getChains();
+        string[1] memory chains = Constants.getChains();
         for (uint256 i = 0; i < chains.length; i++) {
             vm.createSelectFork(chains[i]);
             vm.startBroadcast(key);
@@ -47,7 +47,7 @@ contract DeploySingleOwnerMSCAFactoryScript is Script {
                     string.concat(root, "/script/bytecode-deploy/build-output/SingleOwnerMSCAFactory.json");
                 string memory json = vm.readFile(path);
 
-                bytes32 salt = bytes32(0);
+                bytes32 salt = bytes32(uint256(999));
                 bytes memory creationCode = abi.decode(vm.parseJson(json, ".bytecode.object"), (bytes));
                 bytes memory args = abi.encode(entryPoint, PLUGIN_MANAGER);
                 bytes memory callData = abi.encodePacked(salt, creationCode, args);

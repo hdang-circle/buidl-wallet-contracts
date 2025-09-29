@@ -33,7 +33,7 @@ contract DeployPluginManagerScript is Script {
 
         PluginManager pluginManager;
         if (EXPECTED_PLUGIN_MANAGER.code.length == 0) {
-            pluginManager = new PluginManager{salt: 0}();
+            pluginManager = new PluginManager{salt: bytes32(uint256(999))}();
             console.log("New plugin manager address: %s", address(pluginManager));
         } else {
             pluginManager = PluginManager(EXPECTED_PLUGIN_MANAGER);

@@ -32,7 +32,7 @@ contract DeploySingleOwnerMSCAFactoryScript is Script {
         vm.startBroadcast(key);
         SingleOwnerMSCAFactory factory;
         if (EXPECTED_FACTORY_ADDRESS.code.length == 0) {
-            factory = new SingleOwnerMSCAFactory{salt: 0}(entryPoint, PLUGIN_MANAGER);
+            factory = new SingleOwnerMSCAFactory{salt: bytes32(uint256(999))}(entryPoint, PLUGIN_MANAGER);
             console.log("New single owner MSCA factory address: %s", address(factory));
         } else {
             factory = SingleOwnerMSCAFactory(EXPECTED_FACTORY_ADDRESS);

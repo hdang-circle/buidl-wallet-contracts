@@ -36,7 +36,7 @@ contract DeployColdStorageAddressBookPluginScript is Script {
 
         // Deploy plugin contract if it doesn't exist at the expected address
         if (EXPECTED_PLUGIN_ADDRESS.code.length == 0) {
-            plugin = new ColdStorageAddressBookPlugin{salt: 0}();
+            plugin = new ColdStorageAddressBookPlugin{salt: bytes32(uint256(999))}();
             console.log("New plugin contract deployed at address: %s", address(plugin));
         } else {
             plugin = ColdStorageAddressBookPlugin(EXPECTED_PLUGIN_ADDRESS);

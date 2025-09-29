@@ -39,7 +39,7 @@ contract DeploySponsorPaymaster is Script {
 
         SponsorPaymaster paymaster;
         if (EXPECTED_PAYMASTER_ADDRESS.code.length == 0) {
-            paymaster = new SponsorPaymaster{salt: 0}(IEntryPoint(entryPoint));
+            paymaster = new SponsorPaymaster{salt: bytes32(uint256(999))}(IEntryPoint(entryPoint));
         } else {
             paymaster = SponsorPaymaster(EXPECTED_PAYMASTER_ADDRESS);
         }
@@ -51,7 +51,7 @@ contract DeploySponsorPaymaster is Script {
             address paymasterOwner = vm.envAddress("PAYMASTER_OWNER");
             bytes memory data = abi.encodeCall(paymaster.initialize, (paymasterOwner, verifySigners));
 
-            proxy = new ERC1967Proxy{salt: 0}(address(paymaster), data);
+            proxy = new ERC1967Proxy{salt: bytes32(uint256(1000))}(address(paymaster), data);
         } else {
             proxy = ERC1967Proxy(EXPECTED_PAYMASTER_PROXY_ADDRESS);
         }

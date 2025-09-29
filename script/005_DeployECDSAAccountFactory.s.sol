@@ -35,7 +35,7 @@ contract DeployECDSAAccountFactoryScript is Script {
         vm.startBroadcast(key);
         ECDSAAccountFactory factory;
         if (EXPECTED_FACTORY_ADDRESS.code.length == 0) {
-            factory = new ECDSAAccountFactory{salt: 0}(IEntryPoint(entryPoint));
+            factory = new ECDSAAccountFactory{salt: bytes32(uint256(999))}(IEntryPoint(entryPoint));
         } else {
             factory = ECDSAAccountFactory(EXPECTED_FACTORY_ADDRESS);
         }

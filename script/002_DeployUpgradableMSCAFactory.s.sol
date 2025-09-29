@@ -36,7 +36,7 @@ contract DeployUpgradableMSCAFactoryScript is Script {
 
         UpgradableMSCAFactory factory;
         if (EXPECTED_FACTORY_ADDRESS.code.length == 0) {
-            factory = new UpgradableMSCAFactory{salt: 0}(owner, entryPoint, PLUGIN_MANAGER);
+            factory = new UpgradableMSCAFactory{salt: bytes32(uint256(999))}(owner, entryPoint, PLUGIN_MANAGER);
             console.log("Deployed new factory at address: %s", address(factory));
         } else {
             factory = UpgradableMSCAFactory(EXPECTED_FACTORY_ADDRESS);
